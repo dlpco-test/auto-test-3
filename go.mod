@@ -1,3 +1,3 @@
-module github.com/dlpco/go-project-template
+module github.com/dlpco/auto-test-3
 
 go 1.18

@@ -1,0 +1,13 @@
+replicas: 1
+
+serviceAccount:
+  annotations:
+    test-annotation: homolog
+enableVault: true
+vaultTemplate:
+  export DATABASE_NAME="{{ (secret 'kv-v2/apps/auto-test-3/rds').Data.data.database_name }}"
+  export DATABASE_USER="{{ (secret 'kv-v2/apps/auto-test-3/rds').Data.data.username }}"
+  export DATABASE_PASSWORD="{{ (secret 'kv-v2/apps/auto-test-3/rds').Data.data.password }}"
+  export DATABASE_PORT_DIRECT="{{ (secret 'kv-v2/apps/auto-test-3/rds').Data.data.port }}"
+  export DATABASE_HOST_DIRECT="{{ (secret 'kv-v2/apps/auto-test-3/rds').Data.data.endpoint }}"
+command: "['bash', '-c', '. /vault/secrets/credentials.json && /bin/bin']"
